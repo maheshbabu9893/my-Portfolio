@@ -1,5 +1,5 @@
 import { FiMail, FiPhone, FiLinkedin, FiDownload } from "react-icons/fi";
-import { useScrollReveal, useCardReveal } from "../hooks/useScrollReveal";
+import { useScrollReveal, useStaggerReveal } from "../hooks/useScrollReveal";
 import "./ContactSection.css";
 
 const linkIconMap = {
@@ -11,9 +11,8 @@ const linkIconMap = {
 };
 
 function ContactSection({ email, phone, links, resumePdfUrl }) {
-  const [ref, visible] = useScrollReveal();
-  const cards = useCardReveal();
-  const linkCount = links ? links.length : 0;
+  const [ref, visible] = useScrollReveal(0.1);
+  const cardRef = useStaggerReveal();
   return (
     <section id="contact" className="portfolio-section" ref={ref}>
       <p className={`section-subtitle reveal ${visible ? "visible" : ""}`}>
@@ -26,9 +25,9 @@ function ContactSection({ email, phone, links, resumePdfUrl }) {
       </h2>
       <div className="contact-cards">
         <div
-          ref={cards.setRef(0)}
-          className={`contact-card card-reveal ${cards.isVisible(0) ? "visible" : ""}`}
-          style={{ transitionDelay: "0s" }}
+          ref={cardRef}
+          className="contact-card reveal-scale"
+          style={{ transitionDelay: "0.1s" }}
         >
           <span
             className="contact-icon-wrap"
@@ -42,9 +41,9 @@ function ContactSection({ email, phone, links, resumePdfUrl }) {
           </a>
         </div>
         <div
-          ref={cards.setRef(1)}
-          className={`contact-card card-reveal ${cards.isVisible(1) ? "visible" : ""}`}
-          style={{ transitionDelay: "0.1s" }}
+          ref={cardRef}
+          className="contact-card reveal-scale"
+          style={{ transitionDelay: "0.2s" }}
         >
           <span
             className="contact-icon-wrap"
@@ -68,9 +67,9 @@ function ContactSection({ email, phone, links, resumePdfUrl }) {
             return (
               <div
                 key={i}
-                ref={cards.setRef(i + 2)}
-                className={`contact-card card-reveal ${cards.isVisible(i + 2) ? "visible" : ""}`}
-                style={{ transitionDelay: `${(i + 2) * 0.1}s` }}
+                ref={cardRef}
+                className="contact-card reveal-scale"
+                style={{ transitionDelay: `${0.3 + 0.1 * i}s` }}
               >
                 <span
                   className="contact-icon-wrap"
@@ -92,7 +91,7 @@ function ContactSection({ email, phone, links, resumePdfUrl }) {
           })}
       </div>
       <div
-        className={`contact-cta reveal reveal-delay-3 ${visible ? "visible" : ""}`}
+        className={`contact-cta reveal reveal-delay-4 ${visible ? "visible" : ""}`}
       >
         <a href={resumePdfUrl} download className="btn btn-filled btn-green">
           <FiDownload className="btn-icon" /> Download CV

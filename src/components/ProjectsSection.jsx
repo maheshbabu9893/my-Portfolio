@@ -5,7 +5,7 @@ import {
   FiChevronLeft,
   FiChevronRight,
 } from "react-icons/fi";
-import { useScrollReveal, useCardReveal } from "../hooks/useScrollReveal";
+import { useScrollReveal, useStaggerReveal } from "../hooks/useScrollReveal";
 import "./ProjectsSection.css";
 
 function ProjectImageCarousel({ images, title }) {
@@ -57,8 +57,8 @@ function ProjectImageCarousel({ images, title }) {
 }
 
 function ProjectsSection({ projects, maxProjects = 3 }) {
-  const [ref, visible] = useScrollReveal();
-  const cards = useCardReveal();
+  const [ref, visible] = useScrollReveal(0.05);
+  const cardRef = useStaggerReveal();
   const slots = Array.from(
     { length: maxProjects },
     (_, i) => projects[i] || null,
@@ -78,9 +78,9 @@ function ProjectsSection({ projects, maxProjects = 3 }) {
           p ? (
             <div
               key={i}
-              ref={cards.setRef(i)}
-              className={`project-card card-reveal ${cards.isVisible(i) ? "visible" : ""}`}
-              style={{ transitionDelay: `${i * 0.15}s` }}
+              ref={cardRef}
+              className="project-card reveal-scale"
+              style={{ transitionDelay: `${0.12 * i}s` }}
             >
               <div className="project-img-wrap">
                 {p.images && p.images.length > 0 ? (
@@ -127,9 +127,9 @@ function ProjectsSection({ projects, maxProjects = 3 }) {
           ) : (
             <div
               key={i}
-              ref={cards.setRef(i)}
-              className={`project-card project-card-empty card-reveal ${cards.isVisible(i) ? "visible" : ""}`}
-              style={{ transitionDelay: `${i * 0.15}s` }}
+              ref={cardRef}
+              className="project-card project-card-empty reveal-scale"
+              style={{ transitionDelay: `${0.12 * i}s` }}
             >
               <div className="project-img-wrap">
                 <div className="project-img-placeholder project-placeholder-empty">

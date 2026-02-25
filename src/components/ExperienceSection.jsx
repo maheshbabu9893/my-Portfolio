@@ -1,9 +1,10 @@
 import { FiCheckCircle, FiAward } from "react-icons/fi";
-import { useScrollReveal } from "../hooks/useScrollReveal";
+import { useScrollReveal, useStaggerReveal } from "../hooks/useScrollReveal";
 import "./ExperienceSection.css";
 
 function ExperienceSection({ experiences }) {
-  const [ref, visible] = useScrollReveal();
+  const [ref, visible] = useScrollReveal(0.1);
+  const cardRef = useStaggerReveal();
   const valid = experiences.filter((e) => e.jobTitle && e.company);
   return (
     <section id="experience" className="portfolio-section" ref={ref}>
@@ -18,7 +19,9 @@ function ExperienceSection({ experiences }) {
       {valid.map((exp, i) => (
         <div
           key={i}
-          className={`exp-card reveal reveal-delay-2 ${visible ? "visible" : ""}`}
+          ref={cardRef}
+          className="exp-card reveal"
+          style={{ transitionDelay: `${0.15 * i}s` }}
         >
           <div className="exp-header">
             <div>

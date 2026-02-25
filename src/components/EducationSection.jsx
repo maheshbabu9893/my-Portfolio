@@ -1,5 +1,5 @@
 import { FiBookOpen, FiMapPin, FiCalendar, FiStar } from "react-icons/fi";
-import { useScrollReveal } from "../hooks/useScrollReveal";
+import { useScrollReveal, useStaggerReveal } from "../hooks/useScrollReveal";
 import "./EducationSection.css";
 
 function ScoreRing({ value, max }) {
@@ -47,7 +47,8 @@ function ScoreRing({ value, max }) {
 }
 
 function EducationSection({ education }) {
-  const [ref, visible] = useScrollReveal();
+  const [ref, visible] = useScrollReveal(0.1);
+  const cardRef = useStaggerReveal();
   return (
     <section id="education" className="portfolio-section" ref={ref}>
       <p className={`section-subtitle reveal ${visible ? "visible" : ""}`}>
@@ -65,7 +66,9 @@ function EducationSection({ education }) {
           return (
             <div
               key={i}
-              className={`edu-card reveal reveal-delay-2 ${visible ? "visible" : ""}`}
+              ref={cardRef}
+              className="edu-card reveal"
+              style={{ transitionDelay: `${0.15 * i}s` }}
             >
               <div className="edu-left">
                 <div className="edu-icon-wrap">
@@ -88,9 +91,7 @@ function EducationSection({ education }) {
                 )}
               </div>
               {gpaVal && gpaMax && (
-                <div
-                  className={`edu-right reveal-scale reveal-delay-3 ${visible ? "visible" : ""}`}
-                >
+                <div className="edu-right">
                   <ScoreRing value={gpaVal} max={gpaMax} />
                 </div>
               )}

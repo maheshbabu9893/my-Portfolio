@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
-export function useScrollReveal(threshold = 0.4) {
+export function useScrollReveal(threshold = 0.15) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -23,36 +23,54 @@ export function useScrollReveal(threshold = 0.4) {
   return [ref, visible];
 }
 
-export function useCardReveal(threshold = 0.4) {
-  const refs = useRef([]);
-  const [visibleSet, setVisibleSet] = useState(new Set());
+// For individual card-level reveal (each card animates independently)
+export function useCardReveal(threshold = 0.1) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
     const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const idx = refs.current.indexOf(entry.target);
-            if (idx !== -1) {
-              setVisibleSet((prev) => new Set([...prev, idx]));
-              obs.unobserve(entry.target);
-            }
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.unobserve(el);
+        }
       },
       { threshold },
     );
-
-    refs.current.forEach((el) => {
-      if (el) obs.observe(el);
-    });
-
+    obs.observe(el);
     return () => obs.disconnect();
   }, [threshold]);
 
-  const setRef = (index) => (el) => {
-    refs.current[index] = el;
-  };
+  return [ref, visible];
+}
 
-  return { setRef, isVisible: (index) => visibleSet.has(index) };
+// Hook that returns a ref callback for staggered card animations
+export function useStaggerReveal() {
+  const observerRef = useRef(null);
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observerRef.current.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
+    return () => observerRef.current?.disconnect();
+  }, []);
+
+  const cardRef = useCallback((el) => {
+    if (el && observerRef.current) {
+      observerRef.current.observe(el);
+    }
+  }, []);
+
+  return cardRef;
 }

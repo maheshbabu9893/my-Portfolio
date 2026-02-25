@@ -7,7 +7,7 @@ import {
   FiServer,
   FiUsers,
 } from "react-icons/fi";
-import { useScrollReveal, useCardReveal } from "../hooks/useScrollReveal";
+import { useScrollReveal, useStaggerReveal } from "../hooks/useScrollReveal";
 import "./SkillsSection.css";
 
 const categoryConfig = {
@@ -45,8 +45,8 @@ const categoryConfig = {
 };
 
 function SkillsSection({ skillCategories }) {
-  const [ref, visible] = useScrollReveal();
-  const cards = useCardReveal();
+  const [ref, visible] = useScrollReveal(0.05);
+  const cardRef = useStaggerReveal();
   const valid = skillCategories.filter((c) => c.skills && c.skills.length > 0);
   return (
     <section id="skills" className="portfolio-section" ref={ref}>
@@ -69,9 +69,9 @@ function SkillsSection({ skillCategories }) {
           return (
             <div
               key={i}
-              ref={cards.setRef(i)}
-              className={`skills-card card-reveal ${cards.isVisible(i) ? "visible" : ""}`}
-              style={{ transitionDelay: `${i * 0.1}s` }}
+              ref={cardRef}
+              className="skills-card reveal-scale"
+              style={{ transitionDelay: `${0.08 * i}s` }}
             >
               <div className="skills-card-header">
                 <span
