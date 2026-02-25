@@ -1,7 +1,11 @@
 import { FiHeart } from "react-icons/fi";
 import "./Footer.css";
 
-function Footer({ ownerName }) {
+interface FooterProps {
+  ownerName: string;
+}
+
+function Footer({ ownerName }: FooterProps) {
   return (
     <footer className="footer">
       <p className="footer-text">

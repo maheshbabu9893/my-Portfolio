@@ -1,4 +1,6 @@
-const resumeData = {
+import type { ResumeData } from "../types";
+
+const resumeData: ResumeData = {
   personal: {
     name: "Munagapati Mahesh Babu",
     title: "Frontend Developer (Vue.js | React.js)",

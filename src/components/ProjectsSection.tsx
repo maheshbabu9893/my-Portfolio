@@ -6,38 +6,50 @@ import {
   FiChevronRight,
 } from "react-icons/fi";
 import { useScrollReveal, useStaggerReveal } from "../hooks/useScrollReveal";
+import type { Project } from "../types";
 import "./ProjectsSection.css";
 
-function ProjectImageCarousel({ images, title }) {
-  const [idx, setIdx] = useState(0);
-  if (!images || images.length === 0) return null;
-  const prev = (e) => {
+// Image carousel for project screenshots
+function ProjectImageCarousel({
+  images,
+  title,
+}: {
+  images: string[];
+  title: string;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  if (images.length === 0) return null;
+
+  const goToPrev = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIdx((i) => (i === 0 ? images.length - 1 : i - 1));
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
-  const next = (e) => {
+
+  const goToNext = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIdx((i) => (i === images.length - 1 ? 0 : i + 1));
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
+
   return (
     <div className="project-carousel">
       <img
-        src={images[idx]}
-        alt={`${title} screenshot ${idx + 1}`}
+        src={images[currentIndex]}
+        alt={`${title} screenshot ${currentIndex + 1}`}
         className="project-carousel-img"
       />
       {images.length > 1 && (
         <>
           <button
             className="carousel-btn carousel-btn-left"
-            onClick={prev}
+            onClick={goToPrev}
             aria-label="Previous image"
           >
             <FiChevronLeft />
           </button>
           <button
             className="carousel-btn carousel-btn-right"
-            onClick={next}
+            onClick={goToNext}
             aria-label="Next image"
           >
             <FiChevronRight />
@@ -46,7 +58,7 @@ function ProjectImageCarousel({ images, title }) {
             {images.map((_, i) => (
               <span
                 key={i}
-                className={`carousel-dot${i === idx ? " active" : ""}`}
+                className={`carousel-dot${i === currentIndex ? " active" : ""}`}
               />
             ))}
           </div>
@@ -56,54 +68,66 @@ function ProjectImageCarousel({ images, title }) {
   );
 }
 
-function ProjectsSection({ projects, maxProjects = 3 }) {
-  const [ref, visible] = useScrollReveal(0.05);
+interface ProjectsSectionProps {
+  projects: (Project | null)[];
+  maxProjects?: number;
+}
+
+function ProjectsSection({ projects, maxProjects = 3 }: ProjectsSectionProps) {
+  const [sectionRef, isVisible] = useScrollReveal(0.05);
   const cardRef = useStaggerReveal();
+
+  // Pad the array to always show maxProjects slots (empty ones show "Coming Soon")
   const slots = Array.from(
     { length: maxProjects },
     (_, i) => projects[i] || null,
   );
+
   return (
-    <section id="projects" className="portfolio-section" ref={ref}>
-      <p className={`section-subtitle reveal ${visible ? "visible" : ""}`}>
+    <section id="projects" className="portfolio-section" ref={sectionRef}>
+      <p className={`section-subtitle reveal ${isVisible ? "visible" : ""}`}>
         Browse My Recent
       </p>
       <h2
-        className={`section-title reveal reveal-delay-1 ${visible ? "visible" : ""}`}
+        className={`section-title reveal reveal-delay-1 ${isVisible ? "visible" : ""}`}
       >
         Projects
       </h2>
+
       <div className="projects-grid">
-        {slots.map((p, i) =>
-          p ? (
+        {slots.map((project, index) =>
+          project ? (
             <div
-              key={i}
+              key={index}
               ref={cardRef}
               className="project-card reveal-scale"
-              style={{ transitionDelay: `${0.12 * i}s` }}
+              style={{ transitionDelay: `${0.12 * index}s` }}
             >
               <div className="project-img-wrap">
-                {p.images && p.images.length > 0 ? (
-                  <ProjectImageCarousel images={p.images} title={p.title} />
+                {project.images && project.images.length > 0 ? (
+                  <ProjectImageCarousel
+                    images={project.images}
+                    title={project.title}
+                  />
                 ) : (
                   <div className="project-img-placeholder">
-                    {p.techStack.slice(0, 4).map((t, j) => (
-                      <span key={j} className="project-tech-badge">
-                        {t}
+                    {project.techStack.slice(0, 4).map((tech, i) => (
+                      <span key={i} className="project-tech-badge">
+                        {tech}
                       </span>
                     ))}
                   </div>
                 )}
               </div>
               <div className="project-body">
-                <h3 className="project-name">{p.title}</h3>
+                <h3 className="project-name">{project.title}</h3>
                 <p className="project-desc">
-                  {p.description.split(". ").slice(0, 1).join(". ")}.
+                  {project.description.split(". ").slice(0, 1).join(". ")}.
                 </p>
                 <div className="project-btns">
-                  {p.githubUrl && (
+                  {project.githubUrl && (
                     <a
-                      href={p.githubUrl}
+                      href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-outline-dark"
@@ -111,9 +135,9 @@ function ProjectsSection({ projects, maxProjects = 3 }) {
                       <FiGithub className="btn-icon" /> Github
                     </a>
                   )}
-                  {p.liveUrl && (
+                  {project.liveUrl && (
                     <a
-                      href={p.liveUrl}
+                      href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-filled"
@@ -126,10 +150,10 @@ function ProjectsSection({ projects, maxProjects = 3 }) {
             </div>
           ) : (
             <div
-              key={i}
+              key={index}
               ref={cardRef}
               className="project-card project-card-empty reveal-scale"
-              style={{ transitionDelay: `${0.12 * i}s` }}
+              style={{ transitionDelay: `${0.12 * index}s` }}
             >
               <div className="project-img-wrap">
                 <div className="project-img-placeholder project-placeholder-empty">

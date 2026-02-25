@@ -1,33 +1,38 @@
 import { FiBookOpen, FiMapPin, FiCalendar, FiStar } from "react-icons/fi";
 import { useScrollReveal, useStaggerReveal } from "../hooks/useScrollReveal";
+import type { Education } from "../types";
 import "./EducationSection.css";
 
-function ScoreRing({ value, max }) {
-  const pct = Math.round((value / max) * 100);
-  const r = 42;
-  const circ = 2 * Math.PI * r;
-  const offset = circ - (pct / 100) * circ;
+// Animated circular progress ring for GPA score
+function ScoreRing({ value, max }: { value: number; max: number }) {
+  const percentage = Math.round((value / max) * 100);
+  const radius = 42;
+  const circumference = 2 * Math.PI * radius;
+  const strokeOffset = circumference - (percentage / 100) * circumference;
+
   return (
     <div className="score-ring">
       <svg width="108" height="108" viewBox="0 0 108 108">
+        {/* Background track */}
         <circle
           cx="54"
           cy="54"
-          r={r}
+          r={radius}
           fill="none"
           stroke="#1e293b"
           strokeWidth="7"
         />
+        {/* Progress arc */}
         <circle
           cx="54"
           cy="54"
-          r={r}
+          r={radius}
           fill="none"
           stroke="url(#scoreGrad)"
           strokeWidth="7"
           strokeLinecap="round"
-          strokeDasharray={circ}
-          strokeDashoffset={offset}
+          strokeDasharray={circumference}
+          strokeDashoffset={strokeOffset}
           transform="rotate(-90 54 54)"
           className="score-ring-progress"
         />
@@ -39,60 +44,69 @@ function ScoreRing({ value, max }) {
         </defs>
       </svg>
       <div className="score-ring-text">
-        <span className="score-ring-value">{pct}%</span>
+        <span className="score-ring-value">{percentage}%</span>
         <span className="score-ring-label">Score</span>
       </div>
     </div>
   );
 }
 
-function EducationSection({ education }) {
-  const [ref, visible] = useScrollReveal(0.1);
+interface EducationSectionProps {
+  education: Education[];
+}
+
+function EducationSection({ education }: EducationSectionProps) {
+  const [sectionRef, isVisible] = useScrollReveal(0.1);
   const cardRef = useStaggerReveal();
+
   return (
-    <section id="education" className="portfolio-section" ref={ref}>
-      <p className={`section-subtitle reveal ${visible ? "visible" : ""}`}>
+    <section id="education" className="portfolio-section" ref={sectionRef}>
+      <p className={`section-subtitle reveal ${isVisible ? "visible" : ""}`}>
         Explore My
       </p>
       <h2
-        className={`section-title reveal reveal-delay-1 ${visible ? "visible" : ""}`}
+        className={`section-title reveal reveal-delay-1 ${isVisible ? "visible" : ""}`}
       >
         Education
       </h2>
+
       <div className="edu-cards">
-        {education.map((e, i) => {
-          const gpaVal = e.gpa ? parseFloat(e.gpa.split("/")[0]) : null;
-          const gpaMax = e.gpa ? parseFloat(e.gpa.split("/")[1]) : null;
+        {education.map((edu, index) => {
+          const gpaValue = edu.gpa ? parseFloat(edu.gpa.split("/")[0]) : null;
+          const gpaMax = edu.gpa ? parseFloat(edu.gpa.split("/")[1]) : null;
+
           return (
             <div
-              key={i}
+              key={index}
               ref={cardRef}
               className="edu-card reveal"
-              style={{ transitionDelay: `${0.15 * i}s` }}
+              style={{ transitionDelay: `${0.15 * index}s` }}
             >
               <div className="edu-left">
                 <div className="edu-icon-wrap">
                   <FiBookOpen />
                 </div>
-                <h3 className="edu-degree">{e.degree}</h3>
+                <h3 className="edu-degree">{edu.degree}</h3>
                 <div className="edu-meta">
                   <span className="edu-meta-item">
-                    <FiMapPin className="edu-meta-icon" /> {e.institution}
+                    <FiMapPin className="edu-meta-icon" /> {edu.institution}
                   </span>
                   <span className="edu-meta-item">
-                    <FiCalendar className="edu-meta-icon" /> {e.graduationYear}
+                    <FiCalendar className="edu-meta-icon" />{" "}
+                    {edu.graduationYear}
                   </span>
                 </div>
-                {gpaVal && (
+                {gpaValue && (
                   <div className="edu-gpa-row">
                     <FiStar className="edu-gpa-star" />
-                    <span className="edu-gpa-text">{gpaVal} CGPA</span>
+                    <span className="edu-gpa-text">{gpaValue} CGPA</span>
                   </div>
                 )}
               </div>
-              {gpaVal && gpaMax && (
+
+              {gpaValue && gpaMax && (
                 <div className="edu-right">
-                  <ScoreRing value={gpaVal} max={gpaMax} />
+                  <ScoreRing value={gpaValue} max={gpaMax} />
                 </div>
               )}
             </div>

@@ -1,7 +1,17 @@
 import { FiDownload, FiArrowRight, FiGithub, FiLinkedin } from "react-icons/fi";
 import "./HeroSection.css";
 
-const floatingIcons = [
+interface FloatingIcon {
+  src: string;
+  label: string;
+  top: string;
+  left: string;
+  delay: string;
+  dur: string;
+}
+
+// Tech icons that float around the profile photo
+const floatingIcons: FloatingIcon[] = [
   {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
     label: "React",
@@ -60,26 +70,46 @@ const floatingIcons = [
   },
 ];
 
-function HeroSection({ name, title, summary, profilePhoto, resumePdfUrl }) {
-  const short = summary.split(". ").slice(0, 2).join(". ") + ".";
+interface HeroSectionProps {
+  name: string;
+  title: string;
+  summary: string;
+  profilePhoto: string;
+  resumePdfUrl: string;
+}
+
+function HeroSection({
+  name,
+  title,
+  summary,
+  profilePhoto,
+  resumePdfUrl,
+}: HeroSectionProps) {
+  // Show only the first two sentences of the summary
+  const shortBio = summary.split(". ").slice(0, 2).join(". ") + ".";
   const firstName = name.split(" ")[0];
+
   return (
     <section id="about" className="hero">
+      {/* Animated background blobs */}
       <div className="hero-shape hero-shape-1" />
       <div className="hero-shape hero-shape-2" />
       <div className="hero-shape hero-shape-3" />
 
       <div className="hero-content">
+        {/* Left side — text content */}
         <div className="hero-text">
           <div className="hero-tag">
             <span className="hero-tag-dot" />
             Frontend Developer
           </div>
+
           <h1 className="hero-name">
             Hi, I'm <span className="hero-name-highlight">{firstName}</span>
           </h1>
           <p className="hero-role">{title}</p>
-          <p className="hero-bio">{short}</p>
+          <p className="hero-bio">{shortBio}</p>
+
           <div className="hero-btns">
             <a href={resumePdfUrl} download className="hero-btn-primary">
               <FiDownload /> Download CV
@@ -88,6 +118,7 @@ function HeroSection({ name, title, summary, profilePhoto, resumePdfUrl }) {
               Let's Talk <FiArrowRight />
             </a>
           </div>
+
           <div className="hero-socials">
             <a
               href="https://github.com/maheshbabu9893"
@@ -108,23 +139,24 @@ function HeroSection({ name, title, summary, profilePhoto, resumePdfUrl }) {
           </div>
         </div>
 
+        {/* Right side — profile photo with floating icons */}
         {profilePhoto && (
           <div className="hero-visual">
-            {floatingIcons.map((item, i) => (
+            {floatingIcons.map((icon, index) => (
               <div
-                key={i}
+                key={index}
                 className="hero-float-icon"
                 style={{
-                  top: item.top,
-                  left: item.left,
-                  animationDelay: item.delay,
-                  animationDuration: item.dur,
+                  top: icon.top,
+                  left: icon.left,
+                  animationDelay: icon.delay,
+                  animationDuration: icon.dur,
                 }}
-                title={item.label}
+                title={icon.label}
               >
                 <img
-                  src={item.src}
-                  alt={item.label}
+                  src={icon.src}
+                  alt={icon.label}
                   className="hero-float-icon-img"
                 />
               </div>

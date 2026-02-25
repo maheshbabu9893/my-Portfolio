@@ -1,3 +1,4 @@
+import { IconType } from "react-icons";
 import {
   FiCode,
   FiLayers,
@@ -8,9 +9,17 @@ import {
   FiUsers,
 } from "react-icons/fi";
 import { useScrollReveal, useStaggerReveal } from "../hooks/useScrollReveal";
+import type { SkillCategory } from "../types";
 import "./SkillsSection.css";
 
-const categoryConfig = {
+interface CategoryStyle {
+  icon: IconType;
+  color: string;
+  bg: string;
+}
+
+// Each skill category gets its own color and icon
+const categoryConfig: Record<string, CategoryStyle> = {
   Languages: { icon: FiCode, color: "#a78bfa", bg: "rgba(167, 139, 250, 0.1)" },
   "Frontend Frameworks": {
     icon: FiLayers,
@@ -44,52 +53,65 @@ const categoryConfig = {
   },
 };
 
-function SkillsSection({ skillCategories }) {
-  const [ref, visible] = useScrollReveal(0.05);
+const defaultStyle: CategoryStyle = {
+  icon: FiCode,
+  color: "#a78bfa",
+  bg: "rgba(167, 139, 250, 0.1)",
+};
+
+interface SkillsSectionProps {
+  skillCategories: SkillCategory[];
+}
+
+function SkillsSection({ skillCategories }: SkillsSectionProps) {
+  const [sectionRef, isVisible] = useScrollReveal(0.05);
   const cardRef = useStaggerReveal();
-  const valid = skillCategories.filter((c) => c.skills && c.skills.length > 0);
+
+  const validCategories = skillCategories.filter(
+    (cat) => cat.skills.length > 0,
+  );
+
   return (
-    <section id="skills" className="portfolio-section" ref={ref}>
-      <p className={`section-subtitle reveal ${visible ? "visible" : ""}`}>
+    <section id="skills" className="portfolio-section" ref={sectionRef}>
+      <p className={`section-subtitle reveal ${isVisible ? "visible" : ""}`}>
         Explore My
       </p>
       <h2
-        className={`section-title reveal reveal-delay-1 ${visible ? "visible" : ""}`}
+        className={`section-title reveal reveal-delay-1 ${isVisible ? "visible" : ""}`}
       >
         Skills
       </h2>
+
       <div className="skills-grid">
-        {valid.map((cat, i) => {
-          const config = categoryConfig[cat.category] || {
-            icon: FiCode,
-            color: "#a78bfa",
-            bg: "rgba(167, 139, 250, 0.1)",
-          };
-          const Icon = config.icon;
+        {validCategories.map((category, index) => {
+          const style = categoryConfig[category.category] || defaultStyle;
+          const Icon = style.icon;
+
           return (
             <div
-              key={i}
+              key={index}
               ref={cardRef}
               className="skills-card reveal-scale"
-              style={{ transitionDelay: `${0.08 * i}s` }}
+              style={{ transitionDelay: `${0.08 * index}s` }}
             >
               <div className="skills-card-header">
                 <span
                   className="skills-icon-wrap"
-                  style={{ background: config.bg, color: config.color }}
+                  style={{ background: style.bg, color: style.color }}
                 >
                   <Icon />
                 </span>
-                <h3 className="skills-group-title">{cat.category}</h3>
+                <h3 className="skills-group-title">{category.category}</h3>
               </div>
+
               <div className="skills-items">
-                {cat.skills.map((s, j) => (
-                  <div key={j} className="skill-item">
+                {category.skills.map((skill, i) => (
+                  <div key={i} className="skill-item">
                     <span
                       className="skill-dot"
-                      style={{ background: config.color }}
+                      style={{ background: style.color }}
                     />
-                    <span className="skill-name">{s}</span>
+                    <span className="skill-name">{skill}</span>
                   </div>
                 ))}
               </div>
