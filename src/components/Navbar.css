@@ -1,0 +1,115 @@
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 4%;
+  pointer-events: none;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.6rem 1.5rem;
+  background: rgba(15, 10, 30, 0.92);
+  backdrop-filter: blur(20px);
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  pointer-events: all;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo */
+.nav-logo {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.nav-logo-dot {
+  color: #a855f7;
+}
+
+/* Hamburger */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+/* Nav links */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+.nav-menu a {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: #94a3b8;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.nav-menu a:hover {
+  color: #f1f5f9;
+}
+
+/* Hire Me button */
+.nav-hire-btn {
+  padding: 0.45rem 1.1rem;
+  background: #a855f7;
+  color: #fff;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.25s;
+}
+.nav-hire-btn:hover {
+  background: #9333ea;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    border-radius: 20px;
+    gap: 0;
+    justify-content: space-between;
+  }
+  .nav-hamburger {
+    display: flex;
+  }
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 0.75rem;
+    gap: 0.6rem;
+  }
+  .nav-menu.active {
+    display: flex;
+  }
+  .nav-hire-btn {
+    display: none;
+  }
+}

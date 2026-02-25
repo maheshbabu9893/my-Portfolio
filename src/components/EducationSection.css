@@ -1,0 +1,142 @@
+.edu-cards {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.edu-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.3s;
+  text-align: left;
+}
+.edu-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.08);
+}
+
+/* Left side */
+.edu-left {
+  flex: 1;
+}
+.edu-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
+}
+.edu-card:hover .edu-icon-wrap {
+  transform: scale(1.1) rotate(-5deg);
+}
+.edu-degree {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+  white-space: pre-line;
+}
+.edu-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+.edu-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+.edu-meta-icon {
+  font-size: 0.88rem;
+  color: var(--text-light);
+}
+.edu-gpa-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(251, 191, 36, 0.08);
+  padding: 0.4rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(251, 191, 36, 0.15);
+}
+.edu-gpa-star {
+  color: #fbbf24;
+  font-size: 0.95rem;
+}
+.edu-gpa-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fbbf24;
+}
+
+/* Right side — score ring */
+.edu-right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Score ring */
+.score-ring {
+  position: relative;
+  width: 108px;
+  height: 108px;
+}
+.score-ring svg {
+  display: block;
+}
+.score-ring-progress {
+  transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.score-ring-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.score-ring-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #34d399;
+  line-height: 1;
+}
+.score-ring-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 768px) {
+  .edu-card {
+    flex-direction: column;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .edu-meta {
+    justify-content: center;
+  }
+  .edu-gpa-row {
+    margin: 0 auto;
+  }
+}
