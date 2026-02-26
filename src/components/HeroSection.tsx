@@ -87,7 +87,7 @@ function HeroSection({
 }: HeroSectionProps) {
   // Show the full summary in the hero
   const shortBio = summary;
-  const firstName = name.split(" ")[0];
+  const firstName = name.split(" ").slice(1).join(" ");
 
   return (
     <section id="about" className="hero">
