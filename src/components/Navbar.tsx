@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Navbar.css";
 
 interface NavbarProps {
@@ -8,7 +8,27 @@ interface NavbarProps {
 
 function Navbar({ ownerName, sections }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const firstName = ownerName.split(" ").slice(-2)[0].toLowerCase();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY + 120;
+      let current = "";
+
+      for (const section of [...sections, "contact"]) {
+        const el = document.getElementById(section);
+        if (el && el.offsetTop <= scrollY) {
+          current = section;
+        }
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sections]);
 
   const scrollToTop = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -39,11 +59,24 @@ function Navbar({ ownerName, sections }: NavbarProps) {
         <ul className={`nav-menu${menuOpen ? " active" : ""}`}>
           {sections.map((section) => (
             <li key={section}>
-              <a href={`#${section}`} onClick={() => setMenuOpen(false)}>
+              <a
+                href={`#${section}`}
+                className={activeSection === section ? "nav-active" : ""}
+                onClick={() => setMenuOpen(false)}
+              >
                 {section.charAt(0).toUpperCase() + section.slice(1)}
               </a>
             </li>
           ))}
+          <li className="nav-hire-mobile-item">
+            <a
+              href="#contact"
+              className="nav-hire-mobile"
+              onClick={() => setMenuOpen(false)}
+            >
+              Get in Touch
+            </a>
+          </li>
         </ul>
 
         <a
@@ -51,7 +84,7 @@ function Navbar({ ownerName, sections }: NavbarProps) {
           className="nav-hire-btn"
           onClick={() => setMenuOpen(false)}
         >
-          Hire Me
+          Get in Touch
         </a>
       </nav>
     </div>

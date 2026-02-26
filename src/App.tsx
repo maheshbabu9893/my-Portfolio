@@ -1,5 +1,5 @@
 import "./App.css";
-import resumeData from "./data/resumeData";
+import resumeData from "./data/resumeData.json";
 import Navbar from "./components/Navbar";
 import HeroSection from "./components/HeroSection";
 import ExperienceSection from "./components/ExperienceSection";

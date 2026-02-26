@@ -1,0 +1,152 @@
+{
+  "personal": {
+    "name": "Munagapati Mahesh Babu",
+    "title": "Frontend Developer (Vue.js | React.js)",
+    "location": "Nellore, Andhra Pradesh, India",
+    "summary": "Frontend Developer with nearly 3 years of experience building scalable, high-performance web applications using Vue.js and React. Experienced in designing modern frontend architecture, developing reusable component systems, and implementing real-time features. I focus on writing clean, maintainable code, optimizing performance, and delivering intuitive, reliable user experiences that solve real business problems and scale efficiently.",
+    "profilePhoto": "/projects/profile.jpeg"
+  },
+  "contact": {
+    "email": "maheshbabumunagapati1@gmail.com",
+    "phone": "+91 9542282309",
+    "links": [
+      {
+        "label": "LinkedIn",
+        "url": "https://linkedin.com/in/mahesh-babu-munagapati",
+        "icon": "linkedin"
+      }
+    ]
+  },
+  "experience": [
+    {
+      "jobTitle": "Associate Consultant – Frontend Developer",
+      "company": "Intellect Design Arena",
+      "location": "Product: Purple Fabric",
+      "startDate": "June 2023",
+      "endDate": "Present",
+      "highlights": [
+        {
+          "title": "Micro-Frontend Architecture",
+          "description": "Built and shipped production apps using Single-SPA, integrating Vue.js and React.js modules into a unified platform."
+        },
+        {
+          "title": "Reusable Component Library",
+          "description": "Designed a shared UI library powering critical modules like Expert Agent and Asset Monitor."
+        },
+        {
+          "title": "Real-Time Dashboards",
+          "description": "Created live-streaming dashboards with Server-Sent Events for instant data visualization."
+        },
+        {
+          "title": "Vue 2 → Vue 3 Migration",
+          "description": "Led a zero-downtime migration of the Document Library module, improving performance and maintainability."
+        },
+        {
+          "title": "Access Control System",
+          "description": "Implemented enterprise-grade RBAC and policy-based access control across all application modules."
+        },
+        {
+          "title": "Performance Optimization",
+          "description": "Applied lazy loading, code splitting, and dynamic imports to dramatically improve load times and Core Web Vitals."
+        }
+      ],
+      "impact": [
+        { "metric": "30%", "label": "Faster Integration" },
+        { "metric": "40%", "label": "Less Dev Effort" },
+        { "metric": "35%", "label": "Faster Page Load" }
+      ],
+      "techUsed": [
+        "Vue.js",
+        "React.js",
+        "TypeScript",
+        "Single-SPA",
+        "Vuetify",
+        "Tailwind CSS",
+        "Vite",
+        "Webpack",
+        "Pinia",
+        "Vuex",
+        "Redux Toolkit",
+        "SSE"
+      ],
+      "achievements": [
+        "On-the-Spot Award (2023–2024): Vue 2 to Vue 3 migration delivered under tight deadlines with zero production incidents.",
+        "Spot-Light Award (2024–2025): Built the RBAC system that secured all application modules."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Engineering\nComputer Science and Engineering",
+      "institution": "Chennai Institute of Technology",
+      "graduationYear": "2019 – 2023",
+      "gpa": "9.1/10.0"
+    }
+  ],
+  "skills": [
+    { "category": "Languages", "skills": ["JavaScript (ES6+)", "TypeScript"] },
+    {
+      "category": "Frontend Frameworks",
+      "skills": [
+        "Vue.js (2 & 3)",
+        "React.js",
+        "Single-SPA (Micro-Frontend Architecture)"
+      ]
+    },
+    {
+      "category": "UI Technologies",
+      "skills": [
+        "HTML5",
+        "CSS3",
+        "Vuetify",
+        "Tailwind CSS",
+        "Responsive Design"
+      ]
+    },
+    {
+      "category": "State Management",
+      "skills": ["Pinia", "Vuex", "Redux Toolkit"]
+    },
+    {
+      "category": "Development Tools",
+      "skills": ["Vite", "Webpack", "Vitest", "Git", "GitHub", "GitLab", "Jira"]
+    },
+    {
+      "category": "Backend & APIs",
+      "skills": [
+        "Node.js",
+        "Express.js",
+        "RESTful APIs",
+        "Server-Sent Events (SSE)"
+      ]
+    },
+    {
+      "category": "Methodologies",
+      "skills": ["Agile", "Scrum", "Code Reviews", "CI/CD"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "VibeChatly",
+      "description": "A simple AI chat app built with React and Groq AI. Chat with AI, save conversations, and get instant responses. Features include markdown support with code highlighting, dark mode, and conversation history.",
+      "techStack": [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Vite",
+        "Groq API",
+        "Llama 3.3 70B"
+      ],
+      "images": [
+        "/projects/vibechatly-1.png",
+        "/projects/vibechatly-2.png",
+        "/projects/vibechatly-3.png"
+      ],
+      "liveUrl": "https://vibechatly.netlify.app/",
+      "githubUrl": "https://github.com/maheshbabu9893/AI-Assistant-React"
+    },
+    null,
+    null
+  ],
+  "resumePdfUrl": "/Maheshbabu_Resume.pdf"
+}

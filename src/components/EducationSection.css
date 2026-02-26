@@ -1,5 +1,5 @@
 .edu-cards {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 .edu-card {
@@ -11,6 +11,7 @@
   padding: 2.5rem 3rem;
   background: var(--bg-card);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   transition:
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.3s;
@@ -18,7 +19,7 @@
 }
 .edu-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.08);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.08);
 }
 
 /* Left side */
@@ -120,7 +121,7 @@
   line-height: 1;
 }
 .score-ring-label {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -138,5 +139,14 @@
   }
   .edu-gpa-row {
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .edu-degree {
+    font-size: 1.05rem;
+  }
+  .edu-meta-item {
+    font-size: 0.82rem;
   }
 }

@@ -1,83 +1,207 @@
+/* ── Experience card ── */
 .exp-card {
   border: 1.5px solid var(--border);
   border-radius: 20px;
   padding: 2rem 2.5rem;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto 1.5rem;
   text-align: left;
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   transition:
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.3s;
 }
 .exp-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.08);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.08);
 }
+
+/* ── Header ── */
 .exp-header {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.exp-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
 }
 .exp-role {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--text);
   margin-bottom: 0.2rem;
 }
 .exp-company {
   font-size: 0.88rem;
-  color: var(--text-muted);
+  color: var(--text-light);
 }
+.exp-date {
+  font-size: 0.8rem;
+  color: #60a5fa;
+  font-weight: 500;
+  white-space: nowrap;
+  background: var(--accent-light);
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+/* ── Impact metrics ── */
+.exp-impact-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.exp-impact-item {
+  text-align: center;
+}
+.exp-impact-metric {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
+}
+.exp-impact-label {
+  font-size: 0.76rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Highlights grid ── */
 .exp-highlights {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem 2rem;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
 }
-.exp-highlight-item {
+.exp-hl-card {
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.exp-hl-card:hover {
+  border-color: rgba(59, 130, 246, 0.2);
+  background: rgba(59, 130, 246, 0.04);
+}
+.exp-hl-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+.exp-hl-icon {
+  color: var(--accent);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.exp-hl-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.exp-hl-desc {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  line-height: 1.55;
+}
+
+/* ── Tech tags ── */
+.exp-tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+.exp-tech-tag {
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--text-light);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.exp-tech-tag:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+/* ── Awards ── */
+.exp-awards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.exp-award {
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--text-light);
+  font-size: 0.82rem;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.06);
+  border: 1px solid rgba(251, 191, 36, 0.15);
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
   line-height: 1.5;
+  transition: transform 0.2s;
 }
-.exp-check-icon {
-  color: #34d399;
+.exp-award:hover {
+  transform: translateX(4px);
+}
+.exp-award-icon {
   flex-shrink: 0;
   margin-top: 0.15rem;
   font-size: 0.9rem;
 }
-.exp-awards {
-  margin-top: 1.25rem;
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+.exp-award-title {
+  font-weight: 600;
 }
-.exp-award {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #fbbf24;
-  background: rgba(251, 191, 36, 0.1);
-  border: 1px solid rgba(251, 191, 36, 0.2);
-  padding: 0.35rem 0.85rem;
-  border-radius: 20px;
-  transition: transform 0.2s;
-}
-.exp-award:hover {
-  transform: scale(1.05);
-}
-.exp-award-icon {
-  font-size: 0.85rem;
+.exp-award-desc {
+  color: var(--text-light);
+  font-weight: 400;
 }
 
+/* ── Responsive ── */
 @media (max-width: 768px) {
+  .exp-card {
+    padding: 1.5rem;
+  }
+  .exp-header-top {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .exp-impact-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .exp-highlights {
     grid-template-columns: 1fr;
   }
-  .exp-card {
-    padding: 1.5rem;
+}
+@media (max-width: 480px) {
+  .exp-role {
+    font-size: 1rem;
+  }
+  .exp-company {
+    font-size: 0.82rem;
+  }
+  .exp-impact-metric {
+    font-size: 1.15rem;
   }
 }

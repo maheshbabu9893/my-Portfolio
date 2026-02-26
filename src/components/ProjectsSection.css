@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  max-width: 950px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 .project-card {
@@ -12,13 +12,14 @@
   text-align: center;
   background: var(--bg-card);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   transition:
     transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.35s;
 }
 .project-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(168, 85, 247, 0.12);
+  box-shadow: 0 12px 32px rgba(59, 130, 246, 0.12);
 }
 .project-img-wrap {
   width: 100%;
@@ -98,8 +99,8 @@
   height: 180px;
   background: linear-gradient(
     135deg,
-    rgba(168, 85, 247, 0.1),
-    rgba(59, 130, 246, 0.1)
+    rgba(59, 130, 246, 0.1),
+    rgba(56, 189, 248, 0.1)
   );
   display: flex;
   align-items: center;
@@ -112,16 +113,16 @@
 .project-card:hover .project-img-placeholder {
   background: linear-gradient(
     135deg,
-    rgba(168, 85, 247, 0.15),
-    rgba(59, 130, 246, 0.15)
+    rgba(59, 130, 246, 0.15),
+    rgba(56, 189, 248, 0.15)
   );
 }
 .project-tech-badge {
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   font-weight: 500;
   color: var(--accent);
-  background: rgba(168, 85, 247, 0.1);
-  border: 1px solid rgba(168, 85, 247, 0.2);
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   padding: 0.2rem 0.6rem;
   border-radius: 12px;
   transition: transform 0.2s;
@@ -144,7 +145,7 @@
   margin-bottom: 0.4rem;
 }
 .project-desc {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
   line-height: 1.5;
   margin-bottom: 1rem;
@@ -162,10 +163,29 @@
   opacity: 0.5;
 }
 
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 650px;
+  }
+}
+
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
-    max-width: 350px;
+    max-width: 400px;
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-grid {
+    max-width: 100%;
+  }
+  .project-name {
+    font-size: 0.92rem;
+  }
+  .project-desc {
+    font-size: 0.78rem;
   }
 }

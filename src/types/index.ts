@@ -20,13 +20,25 @@ export interface ContactInfo {
   links: ContactLink[];
 }
 
+export interface ExperienceHighlight {
+  title: string;
+  description: string;
+}
+
+export interface ImpactMetric {
+  metric: string;
+  label: string;
+}
+
 export interface Experience {
   jobTitle: string;
   company: string;
   location: string;
   startDate: string;
   endDate: string;
-  responsibilities: string[];
+  highlights: ExperienceHighlight[];
+  impact?: ImpactMetric[];
+  techUsed?: string[];
   achievements?: string[];
 }
 

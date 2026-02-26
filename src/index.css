@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --accent: #a855f7;
-  --accent-light: rgba(168, 85, 247, 0.1);
-  --accent-hover: #9333ea;
+  --accent: #3b82f6;
+  --accent-light: rgba(59, 130, 246, 0.1);
+  --accent-hover: #2563eb;
   --text: #f1f5f9;
-  --text-light: #cbd5e1;
-  --text-muted: #64748b;
+  --text-light: #e2e8f0;
+  --text-muted: #a8b8cc;
   --border: rgba(255, 255, 255, 0.08);
   --bg-card: rgba(255, 255, 255, 0.04);
-  --bg-body: #0f0a1e;
+  --bg-body: #0a0f1e;
 }
 
 html {
@@ -117,29 +117,61 @@ a {
 
 /* Shared section style */
 .portfolio-section {
-  padding: 5rem 1rem;
+  padding: 5rem 4%;
   text-align: center;
+  position: relative;
 }
 
-/* Alternating section backgrounds */
+/* Fade-out at bottom of each section */
+.portfolio-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg-body));
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (min-width: 1200px) {
+  .portfolio-section {
+    padding: 6rem 6%;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-section {
+    padding: 3.5rem 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-section {
+    padding: 3rem 4%;
+  }
+}
+
+/* Alternating section backgrounds — subtle variation */
 #experience {
-  background: linear-gradient(180deg, #0f0a1e 0%, #131025 50%, #0f0a1e 100%);
+  background: var(--bg-body);
 }
 #skills {
-  background: linear-gradient(180deg, #0f0a1e 0%, #0d1520 50%, #0f0a1e 100%);
+  background: rgba(255, 255, 255, 0.015);
 }
 #projects {
-  background: linear-gradient(180deg, #0f0a1e 0%, #150d22 50%, #0f0a1e 100%);
+  background: var(--bg-body);
 }
 #education {
-  background: linear-gradient(180deg, #0f0a1e 0%, #0d1520 50%, #0f0a1e 100%);
+  background: rgba(255, 255, 255, 0.015);
 }
 #contact {
-  background: linear-gradient(180deg, #0f0a1e 0%, #131025 50%, #0f0a1e 100%);
+  background: var(--bg-body);
 }
 
 .section-subtitle {
-  color: var(--accent);
+  color: #60a5fa;
   font-size: 0.9rem;
   font-weight: 500;
   margin-bottom: 0.25rem;
@@ -151,6 +183,13 @@ a {
   font-weight: 700;
   color: var(--text);
   margin-bottom: 3rem;
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
 }
 
 /* Shared button styles */
@@ -174,7 +213,7 @@ a {
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.2);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .btn:active {
@@ -189,7 +228,7 @@ a {
 .btn-filled:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
-  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.35);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.35);
 }
 
 .btn-outline-dark {

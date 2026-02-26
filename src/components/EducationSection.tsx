@@ -4,11 +4,20 @@ import type { Education } from "../types";
 import "./EducationSection.css";
 
 // Animated circular progress ring for GPA score
-function ScoreRing({ value, max }: { value: number; max: number }) {
+function ScoreRing({
+  value,
+  max,
+  id,
+}: {
+  value: number;
+  max: number;
+  id: string;
+}) {
   const percentage = Math.round((value / max) * 100);
   const radius = 42;
   const circumference = 2 * Math.PI * radius;
   const strokeOffset = circumference - (percentage / 100) * circumference;
+  const gradientId = `scoreGrad-${id}`;
 
   return (
     <div className="score-ring">
@@ -28,7 +37,7 @@ function ScoreRing({ value, max }: { value: number; max: number }) {
           cy="54"
           r={radius}
           fill="none"
-          stroke="url(#scoreGrad)"
+          stroke={`url(#${gradientId})`}
           strokeWidth="7"
           strokeLinecap="round"
           strokeDasharray={circumference}
@@ -37,7 +46,7 @@ function ScoreRing({ value, max }: { value: number; max: number }) {
           className="score-ring-progress"
         />
         <defs>
-          <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#059669" />
             <stop offset="100%" stopColor="#34d399" />
           </linearGradient>
@@ -106,7 +115,11 @@ function EducationSection({ education }: EducationSectionProps) {
 
               {gpaValue && gpaMax && (
                 <div className="edu-right">
-                  <ScoreRing value={gpaValue} max={gpaMax} />
+                  <ScoreRing
+                    value={gpaValue}
+                    max={gpaMax}
+                    id={`edu-${index}`}
+                  />
                 </div>
               )}
             </div>

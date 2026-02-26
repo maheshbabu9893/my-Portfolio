@@ -13,7 +13,7 @@ interface FloatingIcon {
 // Tech icons that float around the profile photo
 const floatingIcons: FloatingIcon[] = [
   {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    src: "https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/react/react-original.svg",
     label: "React",
     top: "-5%",
     left: "75%",
@@ -21,7 +21,7 @@ const floatingIcons: FloatingIcon[] = [
     dur: "4s",
   },
   {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+    src: "https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/vuejs/vuejs-original.svg",
     label: "Vue.js",
     top: "8%",
     left: "-5%",
@@ -29,7 +29,7 @@ const floatingIcons: FloatingIcon[] = [
     dur: "5s",
   },
   {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    src: "https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/typescript/typescript-original.svg",
     label: "TypeScript",
     top: "80%",
     left: "-2%",
@@ -37,7 +37,7 @@ const floatingIcons: FloatingIcon[] = [
     dur: "4.5s",
   },
   {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg",
+    src: "https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/vitejs/vitejs-original.svg",
     label: "Vite",
     top: "85%",
     left: "80%",
@@ -45,7 +45,7 @@ const floatingIcons: FloatingIcon[] = [
     dur: "3.5s",
   },
   {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+    src: "https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/tailwindcss/tailwindcss-original.svg",
     label: "Tailwind",
     top: "-8%",
     left: "25%",
@@ -53,7 +53,7 @@ const floatingIcons: FloatingIcon[] = [
     dur: "5.5s",
   },
   {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    src: "https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/nodejs/nodejs-original.svg",
     label: "Node.js",
     top: "45%",
     left: "92%",
@@ -61,7 +61,7 @@ const floatingIcons: FloatingIcon[] = [
     dur: "4.2s",
   },
   {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+    src: "https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/html5/html5-original.svg",
     label: "HTML5",
     top: "45%",
     left: "-8%",
@@ -85,8 +85,8 @@ function HeroSection({
   profilePhoto,
   resumePdfUrl,
 }: HeroSectionProps) {
-  // Show only the first two sentences of the summary
-  const shortBio = summary.split(". ").slice(0, 2).join(". ") + ".";
+  // Show the full summary in the hero
+  const shortBio = summary;
   const firstName = name.split(" ")[0];
 
   return (
