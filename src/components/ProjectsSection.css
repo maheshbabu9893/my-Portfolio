@@ -150,6 +150,22 @@
   line-height: 1.5;
   margin-bottom: 1rem;
 }
+.project-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.project-tech-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.18);
+  padding: 0.18rem 0.55rem;
+  border-radius: 10px;
+}
 .project-btns {
   display: flex;
   gap: 0.5rem;

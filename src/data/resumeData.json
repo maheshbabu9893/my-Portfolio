@@ -133,9 +133,12 @@
         "React",
         "TypeScript",
         "Tailwind CSS",
-        "Vite",
         "Groq API",
-        "Llama 3.3 70B"
+        "Streaming SSE",
+        "React Router",
+        "Marked",
+        "Highlight.js",
+        "Vite"
       ],
       "images": [
         "/projects/vibechatly-1.png",
@@ -145,8 +148,49 @@
       "liveUrl": "https://vibechatly.netlify.app/",
       "githubUrl": "https://github.com/maheshbabu9893/AI-Assistant-React"
     },
-    null,
-    null
+    {
+      "title": "MovieShell",
+      "description": "A movie discovery app built with React and TMDB API. Browse movies by genre, search by title, and view detailed movie info with ratings and overviews.",
+      "techStack": [
+        "React",
+        "TypeScript",
+        "Redux Toolkit",
+        "React Router",
+        "Axios",
+        "TMDB API",
+        "Lucide Icons",
+        "Vite"
+      ],
+      "images": [
+        "/projects/movieshell-1.png",
+        "/projects/movieshell-2.png",
+        "/projects/movieshell-3.png"
+      ],
+      "liveUrl": "https://movieblogs1.netlify.app",
+      "githubUrl": "https://github.com/maheshbabu9893/MovieShell"
+    },
+    {
+      "title": "CryptoTracker",
+      "description": "A real-time cryptocurrency price tracker built with Vue 3 and CoinGecko API. Features interactive charts, search, and detailed asset views with market data.",
+      "techStack": [
+        "Vue 3",
+        "TypeScript",
+        "Vuetify 4",
+        "Pinia",
+        "Vue Router",
+        "Plotly.js",
+        "CoinGecko API",
+        "Vite"
+      ],
+      "images": [
+        "/projects/crypto-dashboard.png",
+        "/projects/crypto-search.png",
+        "/projects/crypto-panel.png",
+        "/projects/crypto-detail.png"
+      ],
+      "liveUrl": "https://cryptopd.netlify.app",
+      "githubUrl": "https://github.com/maheshbabu9893/CryptoPriceDashboards"
+    }
   ],
   "resumePdfUrl": "/Maheshbabu_Resume.pdf"
 }

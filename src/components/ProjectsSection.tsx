@@ -124,6 +124,13 @@ function ProjectsSection({ projects, maxProjects = 3 }: ProjectsSectionProps) {
                 <p className="project-desc">
                   {project.description.split(". ").slice(0, 1).join(". ")}.
                 </p>
+                <div className="project-tech-tags">
+                  {project.techStack.map((tech, i) => (
+                    <span key={i} className="project-tech-tag">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
                 <div className="project-btns">
                   {project.githubUrl && (
                     <a
