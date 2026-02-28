@@ -298,6 +298,7 @@
     0 0 140px rgba(59, 130, 246, 0.2);
 }
 .hero-photo {
+  display: block;
   width: 100%;
   height: 100%;
   border-radius: 30px;
