@@ -38,6 +38,7 @@ export function useScrollReveal(
  */
 export function useStaggerReveal(): (element: HTMLElement | null) => void {
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const pendingElements = useRef<Set<HTMLElement>>(new Set());
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -52,12 +53,22 @@ export function useStaggerReveal(): (element: HTMLElement | null) => void {
       { threshold: 0.1 },
     );
 
+    // Observe any elements that were attached before the observer was ready
+    pendingElements.current.forEach((el) => {
+      observerRef.current!.observe(el);
+    });
+    pendingElements.current.clear();
+
     return () => observerRef.current?.disconnect();
   }, []);
 
   const attachRef = useCallback((element: HTMLElement | null) => {
-    if (element && observerRef.current) {
+    if (!element) return;
+    if (observerRef.current) {
       observerRef.current.observe(element);
+    } else {
+      // Observer not ready yet — queue the element
+      pendingElements.current.add(element);
     }
   }, []);
 
